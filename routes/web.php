@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'WelcomeController');
+
+Route::get('/book/{title?}', function($title=null) {
+	if($title == null) {
+		return "You need to be more specific";
+	}
+    return "You want to view ".$title;
 });
