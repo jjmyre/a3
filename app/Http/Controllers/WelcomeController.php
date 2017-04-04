@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-	function __invoke(){
-		return 'Hello';
+	function __invoke(Request $request){
+		return view('form');
 	}
 }

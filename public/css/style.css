@@ -1,0 +1,196 @@
+body {
+  font-family: 'Lato', 'sans-serif';
+  background: slategrey;
+  background-image: url('../images/background.png');
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1100px;
+  min-width: 700px;
+  font-size: 1.25em;
+}
+
+h1,h2,h3 {
+  text-shadow: 1px 1px 1px black;
+  text-align: center;
+}
+
+form {
+  background: lightgrey;
+  background-image: url('../images/texture.jpg');
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px black;
+  margin: 8em auto 2em auto;
+  width: 90%;
+  padding: 3em;
+  box-sizing: border-box;
+}
+
+.displayBox {
+	margin: 1em 0;
+}
+
+legend {
+  background-color: #e1f7e7;
+  font-weight: bold;
+  color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  border-bottom: 3px solid darkgray;
+  margin: 0 auto;
+  padding: .5em 0;
+  text-align: center;
+  letter-spacing: .15em;
+} 
+
+fieldset {
+  background: #fcfcfc;
+  margin: 1.5em auto;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 0;
+  z-index: 10000;
+  background: black;
+  width: 100%;
+}
+
+#banner {
+  margin: 0 auto;
+  padding: .5em 0;
+  color: white;
+  top: 0px;
+  background: transparent;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 2px black;
+  padding: .75em 0;
+  letter-spacing: .2em;
+  min-width: 700px;
+}
+
+.name-row {
+	text-align: center;
+}
+
+.name-row input {
+  background: #fcfcfc;
+  box-shadow: 1px 1px 1px darkgray;
+  margin: 0 auto;
+}
+
+.require-symbol {
+  color: red;
+	display: inline-block;
+  text-align: left;
+}
+
+.red {
+  color: red;
+  text-shadow: 1px 1px 1px black;
+}
+
+.green {
+  color: green;
+  text-shadow: 1px 1px 1px black;
+}
+
+.btn {
+  font-family: 'Lato', sans-serif;
+}
+
+/**********MORE INFORMATION **********/
+
+.infoButton {
+  float: left;
+  position: relative;
+  margin: 0;
+  padding:0;
+  bottom: 3.25em;
+  left: 2em;
+  display: block;
+  text-shadow: 1px 0px 0px black;
+}
+
+.infoButton:hover,
+.infoButton:active,
+.infoButton:focus {
+  cursor: pointer;
+  color: #1E90FF;
+}
+
+.infoBox {
+  background-color: beige;
+  margin: 0 auto;
+  padding: 1.5em;
+  border: 1px solid darkgray;
+  border-top: none;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:disabled label {
+  text-decoration: line-through;
+  color: gray;
+}
+
+option {
+  text-align: center;
+}
+
+.radios input {
+	display: inline;
+	margin: 0 .25em .25em 0;
+}
+
+.radios label {
+	display: inline;
+	margin: 1em;
+}
+
+.radios,
+select,
+input[type='number'] {
+	margin-bottom: 1em;
+}
+
+label,
+p,
+select {
+	font-size: 1em;
+	margin-top: 1em;
+}
+
+.ex-col {
+	width: 30%;
+	margin: 0 auto;
+	padding: 0 auto;
+	float: left;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+.ex-col label {
+	display: block;
+}
+
+
+label[for='dependents'] + input {
+	margin: 0;
+	padding:0;
+	text-align: center;
+}
+
+.center {
+	text-align: center;
+}

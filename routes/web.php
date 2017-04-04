@@ -11,11 +11,12 @@
 |
 */
 
+if(config('app.env') == 'local') {
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+}
+
 Route::get('/', 'WelcomeController');
 
-Route::get('/book/{title?}', function($title=null) {
-	if($title == null) {
-		return "You need to be more specific";
-	}
-    return "You want to view ".$title;
-});
+Route::get('/calculate', 'TaxCalculateController');
+
+Route::get('/results', 'TaxResultsController');
