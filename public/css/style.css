@@ -16,7 +16,7 @@ h1,h2,h3 {
 
 #content {
   background: lightgrey;
-  background-image: url('../images/texture.jpg');
+  background-image: url('../images/background.png');
   border-radius: 10px;
   box-shadow: 5px 5px 5px black;
   margin: 8em auto 2em auto;
@@ -25,13 +25,26 @@ h1,h2,h3 {
   box-sizing: border-box;
 }
 
-.alert {
+.details {
   margin: 0;
+  margin-bottom: 1em;
+  padding: 2em;
   list-style-type: none;
+  border-radius: 10px;
+  color: black;
+  line-height: 1.25em;
+  font-weight: normal;
+  text-align: justify;
+  border: 1px solid darkgrey;
 }
 
 .displayBox {
 	margin: 1em 0;
+}
+
+.infoBox p,
+.details p {
+  line-height: 1.5em;
 }
 
 legend {
@@ -51,9 +64,10 @@ legend {
 } 
 
 fieldset {
-  background: #fcfcfc;
+  background: white;
   margin: 1.5em auto;
   border-radius: 10px;
+  border: 1px solid darkgrey;
   box-sizing: border-box;
   text-align: center;
 }
@@ -116,6 +130,9 @@ header {
 
 .btn {
   font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  display: block;
+  width: 100%;
 }
 
 /**********MORE INFORMATION **********/
@@ -138,7 +155,8 @@ header {
   color: #1E90FF;
 }
 
-.infoBox {
+.infoBox,
+.details {
   background-color: beige;
   margin: 0 auto;
   padding: 1.5em;
@@ -149,13 +167,20 @@ header {
   box-sizing: border-box;
 }
 
+.details {
+  border-radius: 10px;
+  background-color: white;
+}
+
 input:disabled + label {
   text-decoration: line-through;
   color: gray;
 }
 
-#howmany {
+#dependents {
   width: 8em;
+  margin: 0 0 .5em 0;
+  display: block;
 }
 
 select {
@@ -175,7 +200,11 @@ select {
 .radios,
 select,
 input[type='number'] {
-	margin-bottom: 1em;
+	margin-bottom: 2em;
+}
+
+input[type='checkbox'] {
+  margin: 0;
 }
 
 label,
@@ -186,25 +215,27 @@ select {
 }
 
 .ex-col {
-	width: 30%;
+	width: 50%;
 	margin: 0 auto;
 	padding: 0 auto;
 	float: left;
 	box-sizing: border-box;
-	text-align: left;
+	text-align: justify;
 }
 
 .ex-col label {
-	display: block;
+	display: inline-block;
+  margin: .5em 0 .5em 5em;
 }
 
-
-label[for='dependents'] + input {
+label[for='dependents'] {
 	margin: 0;
-	padding:0;
+	padding: 0;
 	text-align: center;
+  display: block;
 }
 
 .center {
 	text-align: center;
 }
+

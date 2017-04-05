@@ -1,9 +1,19 @@
 
 
 $(document).ready(function(){
-	$('.infoBox').hide();
-	$('.displayBox').hide();
+	
+    $('.infoBox').hide();
+	
+    $('.displayBox').hide();
 
+    if($('.loanYes').is(':checked')) { $('#loanBox').show(); }
+
+    if($('.tuitionYes').is(':checked')) { $('#tuitionBox').show(); }
+
+    if($('.otherYes').is(':checked')) { $('#otherCreditBox').show(); }
+
+    if($('.childYes').is(':checked')) { $('#childCreditBox').show(); }
+    
 	$('#statusInfoButton').click(function() {
 		$('#statusInfoBox').toggle(200);
 	});
@@ -11,6 +21,10 @@ $(document).ready(function(){
 	$('#exemptionsInfoButton').click(function() {
 		$('#exemptionsInfoBox').toggle(200);
 	});
+
+    $('#adjustInfoButton').click(function() {
+        $('#adjustInfoBox').toggle(200);
+    });
 
 	$('#incomeInfoButton').click(function() {
 		$('#incomeInfoBox').toggle(200);

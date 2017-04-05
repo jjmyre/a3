@@ -1,67 +1,56 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.master')
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="images/favicon.png"/>
-	<link rel="stylesheet" href="css/style.css" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-	<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript" ></script>
-	<title>2016 Tax Estimator</title>
-</head>
+@section('title')
+    Federal Tax Estimator
+@endsection
 
-<body>
-	<h1>2016 FEDERAL TAX RESULTS</h1>
-    
+@section('content')
+    <header class="row-fluid">
+        <h1 id="banner"><i class="fa fa-usd red" aria-hidden="true"></i> Federal Tax Estimator Results <i class="fa fa-usd green" aria-hidden="true"></i></h1>
+    </header>
     <div class="container-fluid">
+        <div class="row-fluid" id="content">
 
-        @if($taxOwed > 0)
+            @if($taxOwed > 0)
+                <h2><i class="fa fa-frown-o" aria-hidden="true"></i> Bad news, {{ $name }} <i class="fa fa-frown-o" aria-hidden="true"></i><br> 
+                You owe the U.S. Government <span class="red">${{ $taxOwed }}</span></h2>
+                <br>'
+            
+            @elseif($taxRefund > 0)
+                <h2><i class="fa fa-smile-o" aria-hidden="true"></i> Good news, {{ $name }} <i class="fa fa-smile-o" aria-hidden="true"></i> <br> 
+                The U.S. Government owes you <span class="green">${{ $taxRefund }}</span></h2>
+                <br>
+            
+            @elseif($taxRefund == 0 && $taxOwed == 0)  
+                <h2><i class="fa fa-meh-o" aria-hidden="true"></i> Good news, {{ $name }} <i class="fa fa-meh-o" aria-hidden="true"> <br>
+                You and the U.S. Government broke even for the year. There is neither a tax refund nor a tax balance owed.</h2>
+                <br>
+            
+            @endif
 
-            <h2><i class="fa fa-frown-o" aria-hidden="true"></i> Bad news, <span class="blue">{{ $name }}</span>. It looks like you owe the U.S. Government <span class="red">${{ $taxOwed }}</span></h2>
-
-        @elseif($taxRefund > 0)
-
-            <h2><i class="fa fa-smile-o" aria-hidden="true"></i> Good news, <span class="blue">{{ $name }}</span>. It looks like the U.S. Government owes you <span class="green">${{ $taxRefund }}</span></h2>
-
-        @elseif($taxRefund == 0 && $taxOwed == 0)  
-
-            <h2><i class="fa fa-meh-o" aria-hidden="true"></i> Good news, <span class="blue">{{ $name }}</span>. It looks like you and the U.S. Government broke even for the year. There is neither a tax refund nor a tax balance owed for the year.</h2>
-
-        @endif
-
-
-        <h3>Here's a breakdown of your Tax Information</h3>
+            <h3>Here's a breakdown of your Tax Information</h3>
         
-        <p><strong>Taxable Income:</strong> ${{ $taxableIncome }}</p>
+            <p><strong>Taxable Income:</strong> ${{ $taxableIncome }}</p>
 
-        <p><strong>Tax Bracket:</strong> {{ $taxBracket }}%</p>
+            <p><strong>Tax Bracket:</strong> {{ $taxBracket or ''}}%</p>
         
-        <p><strong>Adjusted Gross Income (AGI):</strong> ${{ $agi }}</p>
+            <p><strong>Adjusted Gross Income (AGI):</strong> ${{ $agi or '' }}</p>
      
-        <p><strong>Standard Deduction:</strong> ${{ $standardDeduction }}</p>
+            <p><strong>Standard Deduction:</strong> ${{ $standardDeduction or '' }}</p>
         
-        <p><strong>Exemption Amount:</strong> ${{ $exemptionAmount }}</p>
+            <p><strong>Exemption Amount:</strong> ${{ $exemptionAmount or '' }}</p>
         
-        <p><strong>Student Deduction Amount:</strong> ${{ $studentDeduction }}</p> 
+            <p><strong>Student Deduction Amount:</strong> ${{ $studentDeduction or '' }}</p> 
         
-        <p><strong>Tax Credit Amount:</strong> ${{ $credits }}</p>     
+            <p><strong>Tax Credit Amount:</strong> ${{ $credits or '' }}</p>     
         
-        <p><strong>Taxes Previously Paid:</strong> ${{ $taxPaid }}</p>
+            <p><strong>Taxes Previously Paid:</strong> ${{ $taxPaid or '' }}</p>
         
-        @if($taxOwed > 0)
-
-            <p><strong>Tax Balance Owed:</strong><span class="red"> ${{ $taxOwed }}</span></p>   
-
-        @elseif($taxRefund > 0)
-
-            <p><strong>Tax Refund:</strong><span class="green"> ${{ $taxRefund }}</span></p> 
-
-        @endif
-
+            @if(!empty($taxOwed) && $taxOwed > 0)
+                <p><strong>Tax Balance Owed:</strong><span class="red"> ${{ $taxOwed or '' }}</span></p>   
+            @elseif(!empty($taxRefund) && $taxRefund > 0)
+                <p><strong>Tax Refund:</strong><span class="green"> ${{ $taxRefund or '' }}</span></p> 
+            @endif
+        </div>
     </div>
-</body>
-
-</html>
+@endsection

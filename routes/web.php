@@ -17,6 +17,14 @@ if(config('app.env') == 'local') {
 
 Route::get('/', 'WelcomeController');
 
-Route::get('/calculate', 'TaxCalculateController');
+Route::get('/taxyear','TaxYearController');
 
-Route::get('/results', 'TaxResultsController');
+Route::get('/calculate2016', 'TaxCalculate2016Controller');
+
+Route::get('/calculate2017', 'TaxCalculate2017Controller');
+
+
+
+
+
+

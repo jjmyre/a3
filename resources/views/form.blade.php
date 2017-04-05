@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.master')	
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<link rel="shortcut icon" href="images/favicon.png"/>-->
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-	<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js" type="text/javascript" ></script>
-    <script src="js/javascript.js" type="text/javascript" ></script>
-	<title>2016 Federal Tax Estimator</title>
-</head>
+@section('title')
+    {{$year}} Federal Tax Estimator
+@endsection
 
-<body>
+@section('content')
     <header class="row-fluid">
-        <h1 id="banner"><i class="fa fa-usd red" aria-hidden="true"></i>2016 Standard Deduction Federal Tax Estimator<i class="fa fa-usd green" aria-hidden="true"></i></h1>
+        <h1 id="banner"><i class="fa fa-usd red" aria-hidden="true"></i> {{ $year }} Standard Deduction Tax Estimator <i class="fa fa-usd green" aria-hidden="true"></i></h1>
     </header>
+ 
     <div class="container-fluid">
     	<div id="content" class="row-fluid">
-            <form action="/calculate" method='GET' name="taxForm">
+            <form action="/calculate{{$year}}" method='get' name="taxForm">
                 <div class='name-row'>
                     <span class="require-symbol" title="Required">* </span><input type="text" name="name" class="" id="nameinput" placeholder='Name' value="{{ old('name') }}" required />
                 </div>  	
@@ -63,15 +54,21 @@
 				    </div>
 
 				    	<label for="dependents"><span class="require-symbol" title="Required">*</span> Dependents:</label>
-                    		<input type="number" name="dependents" id="howmany" class="text" value="{{ old('dependents') }}" placeholder="#" />
+                    		<input type="number" name="dependents" id="dependents" class="text" value="{{ old('dependents') }}" placeholder="#" />
 					
                 </fieldset>
 
                 <fieldset id="deductAdjust">
+                    <legend>Deduction Adjustments</legend>
+                    <i class="fa fa-info-circle fa-lg infoButton" id="adjustInfoButton" aria-hidden="true" title="More Info"></i>
 
-                        <legend>Standard Deduction Adjustments</legend>
+                    <div class="infoBox" id="adjustInfoBox">
+                        <p>help is here</p>
+                    </div>
+
+
                         <div class='center'>
-                            <p><em>Check all that apply.</em></p>
+                            <p><em>Check all that apply</em></p>
 
                         <div class='ex-col'>
                             <label><input type="checkbox" id="you65" class="checkbox" name="you65"/> You are 65 or older</label>
@@ -84,7 +81,7 @@
 
                             <label><input type="checkbox" id="spouseBlind" class="checkbox" name="spouseBlind"/> Spouse is blind</label>
                         </div>      
-
+                    </div>
                 </fieldset>
     		
                 <fieldset>
@@ -95,7 +92,7 @@
                         <p>help is here</p>
                     </div>
 				
-                    <label for="income"><span class="require-symbol" title="Required">* </span>Total Wages/Salary:</label> 
+                    <label for="income"><span class="require-symbol" title="Required">*</span> Total Wages/Salary:</label> 
                     <input type="number" name="income" id="income" placeholder="$" value="{{ old('name') }}" required /><br>
 
                     <label for="addIncome">Additional Income:</label> 
@@ -117,7 +114,7 @@
 					<div class="radios">
  	                	<p>Do you qualify for child tax credits?</p>
                     	<label><input type='radio' name='childCredit' value='no' class="radio" />No</label>
-                    	<label><input type='radio' name='childCredit' value='yes' class="radio" />Yes</label><br>
+                    	<label><input type='radio' name='childCredit' value='yes' class="radio childYes" />Yes</label><br>
                 	</div>
                     
                     <div class="displayBox" id="childCreditBox"> 
@@ -127,8 +124,8 @@
 					
 					<div class="radios">
                     	<p>Do you qualify for any other tax credits?</p>
-                    	<label><input type='radio' name='otherCredit' value='no' class="radio no" />No</label>
-                    	<label><input type='radio' name='otherCredit' value='yes' class="radio yes" />Yes</label><br>
+                    	<label><input type='radio' name='otherCredit' value='no' class="radio" />No</label>
+                    	<label><input type='radio' name='otherCredit' value='yes' class="radio otherYes" />Yes</label><br>
                     </div> 
 
                     <div class="displayBox" id="otherCreditBox"> 
@@ -148,8 +145,8 @@
                     
                     <div class="radios">
                     	<p>Did you pay school tuition in 2016?</p>
-                   		<label><input type='radio' name='tuition' value='no' class="radio no"/>No</label>
-                    	<label><input type='radio' name='tuition' value='yes' class="radio yes" />Yes</label><br>
+                   		<label><input type='radio' name='tuition' value='no' class="radio"/>No</label>
+                    	<label><input type='radio' name='tuition' value='yes' class="radio tuitionYes" />Yes</label><br>
                     </div>
                     
                     <div class="displayBox" id="tuitionBox"> 
@@ -160,20 +157,29 @@
                     <div class="radios">
 						<p>Did you pay any student loan interest in 2016?</p>
                     	<label><input type='radio' name='loanInterest' value='no' class="radio no" />No</label>
-                    	<label><input type='radio' name='loanInterest' value='yes' class="radio yes" />Yes</label><br>
+                    	<label><input type='radio' name='loanInterest' value='yes' class="radio loanYes" />Yes</label><br>
                     </div>
 
                     <div class="displayBox" id="loanBox"> 
                         <label for="loanAmount">Loan Interest Amount:</label> 
-                        <input type="number" placeholder="$" name="loanAmount" id="loaninterestpaid" min='1' value="{{ old('loanAmount') }}" />
+                        <input type="number" placeholder="$" name="loanAmount" id="loanAmount" min='1' value="{{ old('loanAmount') }}" />
                     </div> 
             
                 </fieldset>
-            
-                <p class="alert alert-warning">If your tax situation is beyond what would be considered simple, it is recommended that you acquire the services of a certified tax accountant or other qualified individual to assist with your tax preparation. This estimator in no way reflects a precise total of your taxes but rather a simple estimate. It does not take into consideration more complex tax situations such as Alternative Minimum Tax (AMT), Self-Employment Tax, Health Insurace Penalty, or an option for itemized deductions. Furthermore, it is assumed that you and your dependents have maintained qualified health insurance, fully paid your Social Security, Medicare and Medicaid taxes, and have no outstanding tax balances or surpluses from previous tax years.</p>
 
-                <input type="submit" name="action" value="Submit" class="btn btn-lg"/>
-            
+                <div class='details'>
+                    <p><em>If your tax situation is beyond what would be considered simple, it is highly recommended that you acquire the services of a certified tax accountant to assist with your tax preparation. This tax estimator provides a simple estimate with an easy-to-use interface. It does not take into consideration more complex tax situations, such as Alternative Minimum Tax (AMT), Self-Employment Tax, Health Insurace Penalty, or even an option for itemized deductions. It is merely a way for those who regularly take the standard deduction on their taxes to assess their tax situation. Furthermore, there are several assumptions, such as maintaining qualified health insurance, fully paying your Social Security, Medicare and Medicaid taxes, and having no outstanding tax balances or surpluses from previous tax years.</em></p>
+                
+                    <label class='text-center'>
+                        <input type="checkbox" id="terms" class="checkbox" name="terms"/><span class="require-symbol" title="Required">*</span><strong>I agree to the terms of use.</strong>
+                    </label>
+
+                </div>
+                
+                <div class="text-center">
+                    <input type="submit" name="action" value="Submit" class="btn btn-lg"/>
+                </div>
+
             </form>
 
             @if(count($errors) >0)
@@ -185,6 +191,5 @@
             @endif
         </div>
     </div>
-</body>
+@endsection
 
-</html>
