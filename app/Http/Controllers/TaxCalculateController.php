@@ -9,12 +9,11 @@ class TaxCalculateController extends Controller
 	function __invoke(Request $request){
 		
 // Defining User Name & Tax Filing Status
+        
         $name = $request->get('name');
         $status = $request->get('status');
 
 // Determining Standard Deduction Amount
-        
-        $standardDeduction = 1050;
 
         if ($status == 'single') { 
             $standardDeduction = 6300;
@@ -26,7 +25,8 @@ class TaxCalculateController extends Controller
             if ($request->has('you65')) {
                 $standardDeduction += 1550;
             }
-        } elseif ($status == 'head') {
+        } 
+        elseif ($status == 'head') {
             $standardDeduction = 9300;
             
             if ($request->has('youBlind')) {
@@ -36,7 +36,8 @@ class TaxCalculateController extends Controller
             if ($request->has('you65')) {
                 $standardDeduction += 1550;
             }
-        } elseif ($status == 'married1') {
+        } 
+        elseif ($status == 'married1') {
             $standardDeduction = 12600;
             
             if ($request->has('youBlind')) {
@@ -46,8 +47,9 @@ class TaxCalculateController extends Controller
             if ($request->has('you65')) {
             $standardDeduction += 1250;
             }
-        } elseif ($status == 'married2') {
-            $standardDeduction == 6300;
+        } 
+        elseif ($status == 'married2') {
+            $standardDeduction = 6300;
             
             if ($request->has('youBlind')) {
                 $standardDeduction += 1250;
@@ -64,8 +66,9 @@ class TaxCalculateController extends Controller
             if($request->has('spouse65')) {
                 $standardDeduction += 1250;
             }
-        } elseif ($status == 'widow') {
-            $standardDeduction == 12600;
+        } 
+        elseif ($status == 'widow') {
+            $standardDeduction = 12600;
             
             if ($request->has('youBlind')) {
                 $standardDeduction += 1250;
@@ -81,12 +84,21 @@ class TaxCalculateController extends Controller
         $exemptionNumber = 0;
         $exemptionAmount = 4050;
 
+        if (!$request->has('yourself')) {
+            if($status == 'single') {
+                $standardDeduction -= 5250;     
+            } 
+            else {
+                $standardDeduction = 0;
+            }
+        }
+
         if ($request->has('yourself')) {
             $exemptionNumber += 1;
         }
 
         if ($spouse = $request->has('spouse')) {
-            $exemptionNumber =+ 1;
+            $exemptionNumber += 1;
         }
 
         $dependents = intval($request->get('dependents'));
@@ -104,13 +116,15 @@ class TaxCalculateController extends Controller
 
         if ($tuition == 'yes') {
             $tuitionAmount = intval($request->get('tuitionAmount'));
-        } elseif ($tuition == 'no') {
+        } 
+        elseif ($tuition == 'no' xor empty($tuition)) {
             $tuitionAmount = 0;
         }
 
         if ($loanInterest == 'yes') {
             $loanAmount = intval($request->get('loanAmount'));
-        } elseif ($loanInterest == 'no') {
+        } 
+        elseif ($loanInterest == 'no' xor empty($tuition)) {
             $loanAmount = 0;
         }
 
@@ -121,106 +135,76 @@ class TaxCalculateController extends Controller
         $income = intval($request->get('income'));
         $additionalIncome = intval($request->get('addIncome'));
         $taxPaid = intval($request->get('taxPaid'));
+        
         $agi = $income + $additionalIncome;
 
 // Determining Taxable Income
 
         $taxableIncome = $agi - $standardDeduction - $exemptionAmount - $studentDeduction; 
         
-        if($taxableIncome <= 0) {
+        if($taxableIncome < 0) {
             $taxableIncome = 0;
         }
 
 // Determing Tax Bracket and Precredit Tax 
 
         $preCreditTax = 0;
-        $taxBrackets = [ .1, .15, .25, .28, .33, .35, .396];
-        $taxBracket= 0;
-        $previousTax = [0];
+        $taxBrackets = [ .10, .15, .25, .28, .33, .35, .396];
 
-        $singleBracketMin = [ 0, 9275, 37650, 91150, 190150, 413350, 415050 ];
-        $singleBracketMax = [ 9275, 37650, 91150, 190150, 413350, 415050, INF ];
-        $singlePreviousTax = [ 0, 927.5, 5183.75, 18558.75, 46278.75, 119934.75, 120529.75];
+        $singleMin = [ 0, 9275, 37650, 91150, 190150, 413350, 415050 ];
+        $singleMax = [ 9275, 37650, 91150, 190150, 413350, 415050, INF ];
+        $singlePrevTax = [ 0, 927.5, 5183.75, 18558.75, 46278.75, 119934.75, 120529.75];
 
-        $headBracketMax = [ 13250, 50400, 130150, 210800, 413350, 441000 ];
-        $headPreviousTax = [ 0, 1325, 6897.5, 26835, 49417, 116258.5, 125936 ];
+        $headMin = [ 0, 13250, 50400, 130150, 210800, 413350, 441000 ];
+        $headMax = [ 13250, 50400, 130150, 210800, 413350, 441000, INF ];
+        $headPrevTax = [ 0, 1325, 6897.5, 26835, 49417, 116258.5, 125936 ];
 
-        $married1BracketMax = [ 9275, 37650, 75950, 115725, 206675, 233475 ];
-        $married1PreviousTax = [ 0, 927.5, 5183.75, 14758.75, 25896.75, 55909.25, 65289.25 ];
+        $married1Min = [ 0, 9275, 37650, 75950, 115725, 206675, 233475 ];
+        $married1Max = [ 9275, 37650, 75950, 115725, 206675, 233475, INF ];
+        $married1PrevTax = [ 0, 927.5, 5183.75, 14758.75, 25895.75, 55909.25, 65289.25 ];
 
-        $married2BracketMax = [ 18550, 75300, 151900, 231450, 413350, 466950 ]; 
-        $married2PreviousTax = [ 0, 1855, 10367.5, 29517.5, 51791.5, 111818.5, 130578.5 ];
-var_dump($taxBrackets[3]);
+        $married2Min = [ 0, 18550, 75300, 151900, 231450, 413350, 466950];
+        $married2Max = [ 18550, 75300, 151900, 231450, 413350, 466950, INF ]; 
+        $married2PrevTax = [ 0, 1855, 10367.5, 29517.5, 51791.5, 111818.5, 130578.5 ];
 
-        if ($status = 'single') {
-            if ($taxableIncome < $singleBracketMax[0]) {
-                $preCreditTax = $taxBrackets[0] * $taxableIncome;
-                $taxBracket = $taxBracket[0];
-            } 
-            else {
-                for ($i=1; $i<=6; $i++) {
-                    $previousTax[$i] = (($singleBracketMax[$i-1] - $singleBracketMin[$i-1]) * $taxBrackets[$i-1]) + $previousTax[$i-1];
-                    if (($taxableIncome < $singleBracketMax[$i]) && ($taxableIncome > $singleBracketMax[$i])) {
-                        $preCreditTax = $taxBracket[$i] * ($taxableIncome - $singleBracketMin[$i]);
-                    }
-                }
+         
+        if ($status == 'single') {    
+            for($i=0; $i<=6; $i++) {  
+                if (($taxableIncome < $singleMax[$i]) && ($taxableIncome >= $singleMin[$i])) {
+                    $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $singleMin[$i]) + $singlePrevTax[$i];
+                    $taxBracket = $taxBrackets[$i] * 100;
+                    break;
+                }          
+            }
+        } 
+        elseif ($status == 'head') {
+            for($i=0; $i<=6; $i++) {  
+                if (($taxableIncome < $headMax[$i]) && ($taxableIncome >= $headMin[$i])) {
+                    $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $headMin[$i]) + $headPrevTax[$i];
+                    $taxBracket = $taxBrackets[$i] * 100;
+                    break;
+                }          
+            }
+        } 
+        elseif ($status == 'married1') {
+            for($i=0; $i<=6; $i++) {  
+                if (($taxableIncome < $married1Max[$i]) && ($taxableIncome >= $married1Min[$i])) {
+                    $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $married1Min[$i]) + $married1PrevTax[$i];
+                    $taxBracket = $taxBrackets[$i] * 100;
+                    break;
+                }          
+            }
+        } 
+        elseif ($status == 'married2' xor $status == 'widow') {
+            for($i=0; $i<=6; $i++) {  
+                if (($taxableIncome < $married2Max[$i]) && ($taxableIncome >= $married2Min[$i])) {
+                    $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $married2Min[$i]) + $married2PrevTax[$i];
+                    $taxBracket = $taxBrackets[$i] * 100;
+                    break;
+                }          
             }
         }
-        var_dump($previousTax);
-  
-    /*        
-        } elseif ($taxableIncome <= $singleBracketMax[5]) {
-                    if ($taxableIncome < $singleBracketMax[$i]) {
-                        $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $singleBracketMin[$i]);
-                        $preCreditTax += $singlePreviousTax[$i];                 
-                    }
-                
-        } elseif ($status = '$married1') {
-            if ($taxableIncome > $married1BracketMax[5]) {
-                $taxBracket = $taxBrackets[6];
-                $preCreditTax = $taxBracket * ($taxableIncome - $married1BracketMax[5]);
-                $preCreditTax += $married1PreviousTax[6]; 
-            } elseif ($taxableIncome <= $married1BracketMax[5]) {
-                for ($i=0; $i<=5; $i++) {
-                    if ($taxableIncome < $married1BracketMax[$i]) {
-                        $taxBracket = $taxBracket[$i];
-                        $preCreditTax = $taxBracket * ($married1BracketMax[$i] - $taxableIncome);
-                        $preCreditTax += $married1PreviousTax[$i];
-                    }
-                }
-            }
-        } elseif ($status == 'head') {
-            if ($taxableIncome > $headBracketMax[5]) {
-                $taxBracket = $taxBrackets[6];
-                $preCreditTax = $taxBracket * ($taxableIncome - $headBracketMax[5]);
-                $preCreditTax += $headPreviousTax[6]; 
-            } elseif ($taxableIncome <= $headBracketMax[5]) {
-                for ($i=0; $i<=5; $i++) {
-                    if ($taxableIncome < $headBracketMax[$i]) {
-                        $taxBracket = $taxBracket[$i];
-                        $preCreditTax = $taxBracket * ($headBracketMax[$i] - $taxableIncome);
-                        $preCreditTax += $headPreviousTax[$i];
-                        break; 
-                    }
-                }
-            }
-        } elseif ($status == 'married2' xor $status == 'widow') {
-            if ($taxableIncome > $married2BracketMax[5]) {
-                $taxBracket = $taxBrackets[6];
-                $preCreditTax = $taxBracket * ($taxableIncome - $married2BracketMax[5]);
-                $preCreditTax += $singlePreviousTax[6]; 
-            } elseif ($taxableIncome <= $married2BracketMax[5]) {
-                for ($i=0; $i<=5; $i++) {
-                    if ($taxableIncome < $married2BracketMax[$i]) {
-                        $taxBracket = $taxBracket[$i];
-                        $preCreditTax = $taxBracket * ($married2BracketMax[$i] - $taxableIncome);
-                        $preCreditTax += $married2PreviousTax[$i];
-                        break; 
-                    }
-                }
-            }
-        }
-*/
+
 // Determing Tax Credits
 
         $childCredit = $request->get('childCredit');
@@ -230,14 +214,16 @@ var_dump($taxBrackets[3]);
         $credits;
 
         if ($childCredit == 'yes') {
-            $childCreditAmount = intval($request->get('childCreditAMount'));
-        } elseif (($childCredit == 'no') xor !$childCredit) {
+            $childCreditAmount = intval($request->get('childCreditAmount'));
+        } 
+        elseif (($childCredit == 'no') xor empty($childCredit)) {
             $childCreditAmount = 0;
         }
 
         if ($otherCredit == 'yes') {
 	       $otherCreditAmount = intval($request->get('otherCreditAmount'));;
-        } elseif (($otherCredit == 'no') xor !$otherCredit) {
+        } 
+        elseif (($otherCredit == 'no') xor empty($otherCredit)) {
 	       $otherCreditAmount = 0;
         }
 
@@ -246,23 +232,34 @@ var_dump($taxBrackets[3]);
 // Determining Taxes Owed or Tax Refunded
 
         $taxes = $preCreditTax - $credits;
-
         $taxFinal = $taxes - $taxPaid; 
 
+        $taxRefund = 0;
+        $taxOwed = 0;
+
         if ($taxFinal > 0) {
-            $taxOwed = abs($taxes);
-            $taxRefund = 0;
-        } elseif ($taxFinal < 0) {
-            $taxRefund = abs($taxes);
-            $taxOwed = 0;
+            $taxOwed = abs($taxFinal);
+            $taxOwed = round($taxOwed);     
+        }
+        
+        if ($taxFinal < 0) {
+            $taxRefund = abs($taxFinal);
+            $taxRefund = round($taxRefund);
         }
 
 // Validation and Return View
 
+        $this->validate($request, [
+            'name' => 'required|alpha|min:3',
+            'status' => 'required',
+            'income' => 'required|numeric',
+            'addIncome' => 'numeric',
+            'taxPaid' => 'numeric',
+            'dependents' => 'required|numeric',
+            ]);
+
         return view('results')->with([
             'name' => $name,
-          //  'taxRefund' => $taxRefund,
-         //   'taxOwed' => $taxOwed,
             'taxableIncome' => $taxableIncome,
             'agi' => $agi,
             'standardDeduction' => $standardDeduction,
@@ -270,8 +267,10 @@ var_dump($taxBrackets[3]);
             'studentDeduction' => $studentDeduction,
             'credits' => $credits,
             'taxBracket' => $taxBracket,
+            'taxOwed' => $taxOwed,
+            'taxRefund' => $taxRefund,
             'taxPaid' => $taxPaid
-        ]);
+            ]); 
 	}
 }
  

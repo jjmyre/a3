@@ -14,7 +14,7 @@ h1,h2,h3 {
   text-align: center;
 }
 
-form {
+#content {
   background: lightgrey;
   background-image: url('../images/texture.jpg');
   border-radius: 10px;
@@ -23,6 +23,11 @@ form {
   width: 90%;
   padding: 3em;
   box-sizing: border-box;
+}
+
+.alert {
+  margin: 0;
+  list-style-type: none;
 }
 
 .displayBox {
@@ -104,6 +109,11 @@ header {
   text-shadow: 1px 1px 1px black;
 }
 
+.blue {
+  color: blue; 
+  text-shadow: 1px 1px 1px black;
+}
+
 .btn {
   font-family: 'Lato', sans-serif;
 }
@@ -114,8 +124,8 @@ header {
   float: left;
   position: relative;
   margin: 0;
-  padding:0;
-  bottom: 3.25em;
+  padding: 0;
+  bottom: 1.6em;
   left: 2em;
   display: block;
   text-shadow: 1px 0px 0px black;
@@ -139,13 +149,17 @@ header {
   box-sizing: border-box;
 }
 
-input:disabled label {
+input:disabled + label {
   text-decoration: line-through;
   color: gray;
 }
 
-option {
-  text-align: center;
+#howmany {
+  width: 8em;
+}
+
+select {
+  height: 2em;
 }
 
 .radios input {

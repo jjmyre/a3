@@ -28,7 +28,7 @@ $(document).ready(function(){
 		$('#healthInfoBox').toggle(200);
 	});
 
- 	$("input[name='childCredit']").click(function() {
+  	$("input[name='childCredit']").click(function() {
     	if ($(this).attr('value') =='no') {
         	$('#childCreditBox').hide();
     	} 
