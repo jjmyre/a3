@@ -1,203 +1,201 @@
 body {
-  font-family: 'Lato', 'sans-serif';
-  background: slategrey;
-  background-image: url('../images/background.png');
-  padding: 0;
-  margin: 0 auto;
-  max-width: 1100px;
-  min-width: 900px;
-  font-size: 1.25em;
+    font-family: 'Lato', 'sans-serif';
+    background: slategrey;
+    background-image: url('../images/background.png');
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1100px;
+    min-width: 900px;
+    font-size: 1.25em;
 }
 
 h1,h2,h3 {
-  text-align: center;
+    text-align: center;
 }
 
 #content {
-  background: lightgrey;
-  background-image: url('../images/background.png');
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px black;
-  margin: 8em auto 2em auto;
-  width: 90%;
-  padding: 3em;
-  box-sizing: border-box;
+    background: lightgrey;
+    background-image: url('../images/background.png');
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
+    margin: 8em auto 2em auto;
+    width: 90%;
+    padding: 3em;
+    box-sizing: border-box;
 }
 
 .details {
-  margin: 0;
-  margin-bottom: 1em;
-  padding: 2em;
-  list-style-type: none;
-  border-radius: 10px;
-  color: black;
-  line-height: 1.25em;
-  font-weight: normal;
-  text-align: justify;
-  border: 1px solid darkgrey;
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 2em;
+    list-style-type: none;
+    border-radius: 10px;
+    color: black;
+    line-height: 1.25em;
+    font-weight: normal;
+    text-align: justify;
+    border: 1px solid darkgrey;
 }
 
 .displayBox {
-	margin: 1em 0;
+    margin: 1em 0;
 }
 
 .infoBox p,
 .details p,
 .infoBox h3 {
-  line-height: 1.5em;
-  text-align: left;
-  font-size: 1em;
-  margin: .3em;
+    line-height: 1.5em;
+    text-align: left;
+    font-size: 1em;
+    margin: .3em;
 }
 
 legend {
-  background-color: #e1f7e7;
-  font-weight: bold;
-  color: black;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-top: 1px solid darkgray;
-  border-left: 1px solid darkgray;
-  border-right: 1px solid darkgray;
-  border-bottom: 3px solid darkgray;
-  margin: 0 auto;
-  padding: .5em 0;
-  text-align: center;
-  letter-spacing: .15em;
+    background-color: #e1f7e7;
+    font-weight: bold;
+    color: black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top: 1px solid darkgray;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    border-bottom: 3px solid darkgray;
+    margin: 0 auto;
+    padding: .5em 0;
+    text-align: center;
+    letter-spacing: .15em;
 } 
 
 fieldset,
 .results {
-  background-color: white;
-  margin: 1.5em auto;
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid darkgrey;
-  box-sizing: border-box;
-  text-align: center;
+    background-color: white;
+    margin: 1.5em auto;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid darkgrey;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .results {
-  padding: 1.5em 0;
+    padding: 1.5em 0;
 }
 
 .results p {
-  text-align: left;
-  margin-left: 5em;
+    text-align: left;
+    margin-left: 5em;
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  padding: 0;
-  z-index: 10000;
-  background: black;
-  width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 10000;
+    background: black;
+    width: 100%;
 }
 
 #banner {
-  margin: 0 auto;
-  padding: .5em 0;
-  color: white;
-  top: 0px;
-  background: transparent;
-  font-size: 1.5em;
-  text-shadow: 2px 2px 2px black;
-  padding: .75em 0;
-  letter-spacing: .2em;
-  min-width: 700px;
+    margin: 0 auto;
+    padding: .5em 0;
+    color: white;
+    top: 0px;
+    background: transparent;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 2px black;
+    padding: .75em 0;
+    letter-spacing: .2em;
+    min-width: 700px;
 }
 
 .name-row {
-	text-align: center;
+    text-align: center;
 }
 
 .name-row input {
-  background: #fcfcfc;
-  box-shadow: 1px 1px 1px darkgray;
-  margin: 0 auto;
+    background: #fcfcfc;
+    box-shadow: 1px 1px 1px darkgray;
+    margin: 0 auto;
 }
 
 .require-symbol {
-  color: red;
+    color: red;
 	display: inline-block;
-  text-align: left;
+    text-align: left;
 }
 
 .red {
-  color: red;
-  text-shadow: 1px 1px 1px black;
+    color: red;
+    text-shadow: 1px 1px 1px black;
 }
 
 .green {
-  color: green;
-  text-shadow: 1px 1px 1px black;
+    color: green;
+    text-shadow: 1px 1px 1px black;
 }
 
 .blue {
-  color: blue; 
-  text-shadow: 1px 1px 1px black;
+    color: blue; 
+    text-shadow: 1px 1px 1px black;
 }
 
 .btn {
-  font-family: 'Lato', sans-serif;
-  font-weight: bolder;
-  display: block;
-  width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: bolder;
+    display: block;
+    width: 100%;
 }
 
-/**********MORE INFORMATION **********/
-
 .infoButton {
-  float: left;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  bottom: 1.6em;
-  left: 2em;
-  display: block;
-  text-shadow: 1px 0px 0px black;
+    float: left;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    bottom: 1.6em;
+    left: 2em;
+    display: block;
+    text-shadow: 1px 0px 0px black;
 }
 
 .infoButton:hover,
 .infoButton:active,
 .infoButton:focus {
-  cursor: pointer;
-  color: #1E90FF;
+    cursor: pointer;
+    color: #1E90FF;
 }
 
 .infoBox,
 .details {
-  background-color: beige;
-  margin: 0 auto;
-  padding: 1.5em;
-  border: 1px solid darkgray;
-  border-top: none;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
+    background-color: beige;
+    margin: 0 auto;
+    padding: 1.5em;
+    border: 1px solid darkgray;
+    border-top: none;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .details {
-  border-radius: 10px;
-  background-color: white;
-  text-align: justify;
+    border-radius: 10px;
+    background-color: white;
+    text-align: justify;
 }
 
 input:disabled + label {
-  text-decoration: line-through;
-  color: gray;
+    text-decoration: line-through;
+    color: gray;
 }
 
 select,
 input[type='text'] {
-  height: 2em;
-  font-size: 1em;
-  margin: 1em 0;
-  width: 15em;
+    height: 2em;
+    font-size: 1em;
+    margin: 1em 0;
+    width: 15em;
 }
 
 .radios input {
@@ -216,7 +214,7 @@ input[type='number'] {
 }
 
 input[type='checkbox'] {
-  margin: 0;
+    margin: 0;
 }
 
 label,
@@ -236,29 +234,34 @@ p {
 
 .ex-col label {
 	display: block;
-  text-align: left;
-  margin: .5em 0 .5em 5em;
+    text-align: left;
+    margin: .5em 0 .5em 5em;
 }
 
 .ex-col input[type="number"] {
-  display: inline-block;
-  margin: .2em 30% .5em 30%;
-  width: 40%
+    display: inline-block;
+    margin: .2em 30% .5em 30%;
+    width: 40%
 }
 
 .center {
 	text-align: center;
-  width: 100%;
-  padding: 0 10%;
+    width: 100%;
+    padding: 0 10%;
 }
 
 .center p {
-  text-align: center;
-  width: 100%;
-  margin: .5em auto;
+    text-align: center;
+    width: 100%;
+    margin: .5em auto;
 }
 
 .alert-danger {
-  list-style: none;
+    list-style: none;
+}
+
+input[type='submit'].btn {
+    width: 30%;
+    margin: 1em 35%;
 }
 

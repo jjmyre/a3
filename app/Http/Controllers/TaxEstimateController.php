@@ -205,7 +205,8 @@ class TaxEstimateController extends Controller
         $married2Max = [ 18550, 75300, 151900, 231450, 413350, 466950, INF ]; 
         $married2PrevTax = [ 0, 1855, 10367.5, 29517.5, 51791.5, 111818.5, 130578.5 ];
          
-        /* The following for loops extract the given minimum and maximum tax brackets from the areas above for each tax status */
+        /* The following for loops extract the given minimum and maximum tax */
+        /* brackets from the areas above for each tax status */
 
         if ($status == 'single') {    
             for($i=0; $i<=6; $i++) {  
@@ -337,9 +338,9 @@ class TaxEstimateController extends Controller
 	}
  
     public function estimate2017(Request $request){
-        /*
-        It should be noted that much of the following logic is repeated from the above function but with different amounts (deduction rates, income brackets, etc.) for the 2017 tax year.
-        */
+        // It should be noted that much of the following logic is repeated
+        // from the above function but with different amounts (deduction
+        // rates, income brackets, etc.) for the 2017 tax year 
 
         // Defining User Name & Tax Filing Status
         
@@ -538,7 +539,8 @@ class TaxEstimateController extends Controller
         $married2Max = [ 18650, 75900, 153100, 233350, 416700, 470700, INF ]; 
         $married2PrevTax = [ 0, 1865, 10452.5, 29752.5, 52222.5, 112728, 131628 ];
          
-        /* The following for loops extract the given minimum and maximum tax brackets from the areas above for each tax status */
+        /* The following for loops extract the given minimum and maximum tax */
+        /* brackets from the areas above for each tax status */
 
         if ($status == 'single') {    
             for($i=0; $i<=6; $i++) {  

@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Federal Tax Estimator Results
+    Federal Income Tax Return Estimate
 @endsection
 
 @section('content')
     <header class="row-fluid">
-        <h1 id="banner"><i class="fa fa-usd red" aria-hidden="true"></i> Federal Tax Estimator Results <i class="fa fa-usd green" aria-hidden="true"></i></h1>
+        <h1 id="banner"><i class="fa fa-usd red" aria-hidden="true"></i> Federal Income Tax Return Estimate <i class="fa fa-usd green" aria-hidden="true"></i></h1>
     </header>
     <div class="container-fluid" id="content">
         @if($taxOwed > 0)
@@ -31,30 +31,40 @@
         @endif
 
         <div class="row-fluid results">
-                <h3>Here's a breakdown of your Tax Information</h3>
+            <h3>Here's a breakdown of your Tax Information</h3>
         
-                <p><strong>Taxable Income:</strong> ${{ $taxableIncome }}</p>
+            <p><strong>Taxable Income:</strong> 
+            ${{ $taxableIncome }}</p>
 
-                <p><strong>Tax Bracket:</strong> {{ $taxBracket or ''}}%</p>
+            <p><strong>Tax Bracket:</strong> 
+            {{ $taxBracket or ''}}%</p>
         
-                <p><strong>Adjusted Gross Income (AGI):</strong> ${{ $agi or '' }}</p>
+            <p><strong>Adjusted Gross Income (AGI):</strong> 
+            ${{ $agi or '' }}</p>
      
-                <p><strong>Standard Deduction:</strong> ${{ $standardDeduction or '' }}</p>
+            <p><strong>Standard Deduction:</strong> 
+            ${{ $standardDeduction or '' }}</p>
         
-                <p><strong>Exemption Amount:</strong> ${{ $exemptionAmount or '' }}</p>
+            <p><strong>Exemption Amount:</strong> 
+            ${{ $exemptionAmount or '' }}</p>
         
-                <p><strong>Student Deduction Amount:</strong> ${{ $studentDeduction or '' }}</p> 
+            <p><strong>Student Deduction Amount:</strong> 
+            ${{$studentDeduction or '' }}</p> 
         
-                <p><strong>Tax Credit Amount:</strong> ${{ $credits or '' }}</p>     
+            <p><strong>Tax Credit Amount:</strong> 
+            ${{ $credits or '' }}</p>     
         
-                <p><strong>Taxes Previously Paid:</strong> ${{ $taxPaid or '' }}</p>
+            <p><strong>Taxes Previously Paid:</strong> 
+            ${{ $taxPaid or '' }}</p>
         
-                @if(!empty($taxOwed) && $taxOwed > 0)
-                    <p><strong>Tax Balance Owed:</strong><span class="red"> ${{ $taxOwed or '' }}</span></p>   
-                @elseif(!empty($taxRefund) && $taxRefund > 0)
-                    <p><strong>Tax Refund:</strong><span class="green"> ${{ $taxRefund or '' }}</span></p> 
-                @endif
-
+            @if(!empty($taxOwed) && $taxOwed > 0)
+                <p><strong>Tax Balance Owed:</strong>
+                <span class="red"> ${{ $taxOwed or '' }}</span></p>   
+            @elseif(!empty($taxRefund) && $taxRefund > 0)
+                <p><strong>Tax Refund:</strong>
+                <span class="green"> ${{ $taxRefund or '' }}</span></p> 
+            @endif
+            
         </div>
     </div>
 @endsection
