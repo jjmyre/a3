@@ -63,13 +63,23 @@ legend {
   letter-spacing: .15em;
 } 
 
-fieldset {
-  background: white;
+fieldset,
+.results {
+  background-color: white;
   margin: 1.5em auto;
   border-radius: 10px;
   border: 1px solid darkgrey;
   box-sizing: border-box;
   text-align: center;
+}
+
+.results {
+  padding: 1.5em 0;
+}
+
+.results p {
+  text-align: left;
+  margin-left: 5em;
 }
 
 header {
@@ -170,6 +180,7 @@ header {
 .details {
   border-radius: 10px;
   background-color: white;
+  text-align: justify;
 }
 
 input:disabled + label {
@@ -183,8 +194,12 @@ input:disabled + label {
   display: block;
 }
 
-select {
+select,
+input[type='text'] {
   height: 2em;
+  font-size: 1em;
+  margin: 1em 0;
+  width: 15em;
 }
 
 .radios input {
@@ -198,7 +213,6 @@ select {
 }
 
 .radios,
-select,
 input[type='number'] {
 	margin-bottom: 2em;
 }
@@ -208,14 +222,13 @@ input[type='checkbox'] {
 }
 
 label,
-p,
-select {
+p {
 	font-size: 1em;
 	margin-top: 1em;
 }
 
 .ex-col {
-	width: 50%;
+	width: 40%;
 	margin: 0 auto;
 	padding: 0 auto;
 	float: left;
@@ -224,18 +237,20 @@ select {
 }
 
 .ex-col label {
-	display: inline-block;
+	display: block;
+  text-align: left;
   margin: .5em 0 .5em 5em;
 }
 
-label[for='dependents'] {
-	margin: 0;
-	padding: 0;
-	text-align: center;
-  display: block;
+.ex-col input[type="number"] {
+display: inline-block;
 }
+
+
 
 .center {
 	text-align: center;
+  width: 100%;
+  padding: 0 10%;
 }
 

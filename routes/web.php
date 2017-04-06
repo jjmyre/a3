@@ -19,9 +19,9 @@ Route::get('/', 'WelcomeController');
 
 Route::get('/taxyear','TaxYearController');
 
-Route::get('/calculate2016', 'TaxCalculate2016Controller');
+Route::get('/taxyear2016/estimate', 'TaxEstimateController@estimate2016');
 
-Route::get('/calculate2017', 'TaxCalculate2017Controller');
+Route::get('/taxyear2017/estimate', 'TaxEstimateController@estimate2017');
 
 
 

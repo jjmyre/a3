@@ -1,10 +1,14 @@
 
 
 $(document).ready(function(){
+
+    // Hide the info and display boxes on document ready
 	
     $('.infoBox').hide();
 	
     $('.displayBox').hide();
+
+    // Displays amount inputs, if check, after validation fails
 
     if($('.loanYes').is(':checked')) { $('#loanBox').show(); }
 
@@ -13,6 +17,8 @@ $(document).ready(function(){
     if($('.otherYes').is(':checked')) { $('#otherCreditBox').show(); }
 
     if($('.childYes').is(':checked')) { $('#childCreditBox').show(); }
+
+    // Event handlers to show or hide Infoxboxes when icon is clicked
     
 	$('#statusInfoButton').click(function() {
 		$('#statusInfoBox').toggle(200);
@@ -41,6 +47,8 @@ $(document).ready(function(){
 	$('#healthInfoButton').click(function() {
 		$('#healthInfoBox').toggle(200);
 	});
+
+    // Event handlers to show or hide amount inputs
 
   	$("input[name='childCredit']").click(function() {
     	if ($(this).attr('value') =='no') {
