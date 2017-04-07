@@ -37,32 +37,32 @@
             ${{ $taxableIncome }}</p>
 
             <p><strong>Tax Bracket:</strong> 
-            {{ $taxBracket or ''}}%</p>
+            {{ $taxBracket }}%</p>
         
             <p><strong>Adjusted Gross Income (AGI):</strong> 
-            ${{ $agi or '' }}</p>
+            ${{ $agi }}</p>
      
             <p><strong>Standard Deduction:</strong> 
-            ${{ $standardDeduction or '' }}</p>
+            ${{ $standardDeduction }}</p>
         
             <p><strong>Exemption Amount:</strong> 
-            ${{ $exemptionAmount or '' }}</p>
+            ${{ $exemptionAmount }}</p>
         
             <p><strong>Student Deduction Amount:</strong> 
-            ${{$studentDeduction or '' }}</p> 
+            ${{$studentDeduction }}</p> 
         
             <p><strong>Tax Credit Amount:</strong> 
-            ${{ $credits or '' }}</p>     
+            ${{ $credits }}</p>     
         
             <p><strong>Taxes Previously Paid:</strong> 
-            ${{ $taxPaid or '' }}</p>
+            ${{ $taxPaid }}</p>
         
             @if(!empty($taxOwed) && $taxOwed > 0)
                 <p><strong>Tax Balance Owed:</strong>
-                <span class="red"> ${{ $taxOwed or '' }}</span></p>   
+                <span class="red"> ${{ $taxOwed }}</span></p>   
             @elseif(!empty($taxRefund) && $taxRefund > 0)
                 <p><strong>Tax Refund:</strong>
-                <span class="green"> ${{ $taxRefund or '' }}</span></p> 
+                <span class="green"> ${{ $taxRefund }}</span></p> 
             @endif
             
         </div>
