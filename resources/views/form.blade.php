@@ -64,7 +64,6 @@
                         <option value="married2" {{ old('status') == "married2" ? 'SELECTED' : '' }} >Married Filing Jointly</option>
                         <option value="widow" {{ old('status') == "widow" ? 'SELECTED' : '' }} >Qualified Widow(er)</option>
                     </select>
-                
                 </fieldset>
 
                 <fieldset id="exemptions">
@@ -97,7 +96,6 @@
                             <input type="number" name="dependents" id="dependents" class="text" value="{{ old('dependents') }}" placeholder="#" />
                         </div>
                     </div>
-
                 </fieldset>
 
                 <fieldset>
@@ -126,9 +124,8 @@
                             <label><input type="checkbox" id="spouseBlind" class="checkbox" name="spouseBlind" {{ old('spouseBlind') ? 'CHECKED' : '' }}/> Spouse is blind</label>
                         </div>      
                     </div>
-
                 </fieldset>
-    		
+
                 <fieldset>
                     <legend>Income</legend>
                     <i class="fa fa-info-circle fa-lg infoButton" id="incomeInfoButton" aria-hidden="true" title="More Info"></i>
@@ -158,7 +155,6 @@
                     <br>
                 
                 </fieldset>
-            
                 <fieldset>
                     <legend>Tax Credits</legend>
                     <i class="fa fa-info-circle fa-lg infoButton" id="creditsInfoButton" aria-hidden="true" title="More Info"></i>                
@@ -190,7 +186,6 @@
                         <label for="otherCreditAmount"><span class="require-symbol" title="Required">*</span>Additional Tax Credit Amount:</label> 
                         <input type="number" name="otherCreditAmount" placeholder="$" id="otherCreditAmount" min='1' value="{{ old('otherCreditAmount') }}" />
                     </div> 
-            
                 </fieldset>
 
                 <fieldset>
@@ -232,7 +227,6 @@
                         <label for="loanAmount"><span class="require-symbol" title="Required">*</span>Loan Interest Amount:</label> 
                         <input type="number" placeholder="$" name="loanAmount" id="loanAmount" value="{{ old('loanAmount') }}" />
                     </div> 
-            
                 </fieldset>
 
                 <div class='details'>
@@ -249,7 +243,9 @@
                     taxes to assess their tax situation.</p>
                 
                     <label class='text-center'>
-                        <input type="checkbox" id="terms" class="checkbox" name="terms" required/> <span class="require-symbol" title="Required">*</span><strong>I agree to the terms of use.</strong>
+                        <input type="checkbox" id="terms" class="checkbox" name="terms" required/> 
+                        <span class="require-symbol" title="Required">*</span>
+                        <strong>I agree to the terms of use.</strong>
                     </label>
 
                 </div>    
