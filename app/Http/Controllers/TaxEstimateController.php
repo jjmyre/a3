@@ -187,7 +187,7 @@ class TaxEstimateController extends Controller
         // Determing Tax Bracket and Precredit Tax 
 
         $preCreditTax = 0;
-        $taxBrackets = [ .10, .15, .25, .28, .33, .35, .396];
+        $taxBrackets = [ .10, .15, .25, .28, .33, .35, .396 ];
 
         $singleMin = [ 0, 9275, 37650, 91150, 190150, 413350, 415050 ];
         $singleMax = [ 9275, 37650, 91150, 190150, 413350, 415050, INF ];
@@ -201,7 +201,7 @@ class TaxEstimateController extends Controller
         $married1Max = [ 9275, 37650, 75950, 115725, 206675, 233475, INF ];
         $married1PrevTax = [ 0, 927.5, 5183.75, 14758.75, 25895.75, 55909.25, 65289.25 ];
 
-        $married2Min = [ 0, 18550, 75300, 151900, 231450, 413350, 466950];
+        $married2Min = [ 0, 18550, 75300, 151900, 231450, 413350, 466950 ];
         $married2Max = [ 18550, 75300, 151900, 231450, 413350, 466950, INF ]; 
         $married2PrevTax = [ 0, 1855, 10367.5, 29517.5, 51791.5, 111818.5, 130578.5 ];
          
@@ -254,14 +254,14 @@ class TaxEstimateController extends Controller
         $credits;
 
         if ($childCredit == 'yes') {
-            $childCreditAmount = intval($request->input('childCreditAmount', '0'));
+            $childCreditAmount = intval($request->input('childCreditAmount'));
         } 
         elseif (($childCredit == 'no') xor empty($childCredit)) {
             $childCreditAmount = 0;
         }
 
         if ($otherCredit == 'yes') {
-	       $otherCreditAmount = intval($request->get('otherCreditAmount', '0'));;
+	       $otherCreditAmount = intval($request->get('otherCreditAmount'));;
         } 
         elseif (($otherCredit == 'no') xor empty($otherCredit)) {
 	       $otherCreditAmount = 0;
@@ -433,7 +433,7 @@ class TaxEstimateController extends Controller
 
         if (!$yourself) {
             if($status == 'single') {
-                $standardDeduction -= 5250;     
+                $standardDeduction -= 5300;     
             } 
         }
 
@@ -526,7 +526,7 @@ class TaxEstimateController extends Controller
         // Determing Tax Bracket and Precredit Tax 
 
         $preCreditTax = 0;
-        $taxBrackets = [ .10, .15, .25, .28, .33, .35, .396];
+        $taxBrackets = [ .10, .15, .25, .28, .33, .35, .396 ];
 
         $singleMin = [ 0, 9325, 37950, 91900, 191650, 416700, 418400 ];
         $singleMax = [ 9325, 37950, 91900, 191650, 416700, 418400, INF ];
@@ -593,14 +593,14 @@ class TaxEstimateController extends Controller
         $credits;
 
         if ($childCredit == 'yes') {
-            $childCreditAmount = intval($request->input('childCreditAmount', '0'));
+            $childCreditAmount = intval($request->input('childCreditAmount'));
         } 
         elseif (($childCredit == 'no') xor empty($childCredit)) {
             $childCreditAmount = 0;
         }
 
         if ($otherCredit == 'yes') {
-           $otherCreditAmount = intval($request->get('otherCreditAmount', '0'));;
+           $otherCreditAmount = intval($request->get('otherCreditAmount'));;
         } 
         elseif (($otherCredit == 'no') xor empty($otherCredit)) {
            $otherCreditAmount = 0;
