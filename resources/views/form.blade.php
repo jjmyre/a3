@@ -210,7 +210,7 @@
                     <div class="radios">
                     	<p>Did you pay school tuition in 2016?</p>
                    		<label><input type='radio' name='tuition' value='no' class="radio" {{ old('tuition') == "no" ? 'CHECKED' : '' }}/>No</label>
-                    	<label><input type='radio' name='tuition' value='yes' class="radio tuitionYes" {{ old('childCredit') == "yes" ? 'CHECKED' : '' }} />Yes</label>
+                    	<label><input type='radio' name='tuition' value='yes' class="radio tuitionYes" {{ old('tuition') == "yes" ? 'CHECKED' : '' }} />Yes</label>
                     </div>
                     
                     <div class="displayBox" id="tuitionBox"> 
