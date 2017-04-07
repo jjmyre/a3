@@ -18,7 +18,7 @@
  
     <div class="container-fluid">
     	<div id="content" class="row-fluid">
-            <form action="taxreturn/{{$year}}/estimate/" method='get' 
+            <form action="taxreturn/{{ $year }}/estimate/" method='get' 
             name="taxForm">
                 <div class='name-row'>
                     <span class="require-symbol" title="Required">* </span>
@@ -34,24 +34,24 @@
                     
                     <div class="infoBox" id="statusInfoBox">
                         <h3>Single</h3> 
-                        <p>if you are unmarried with no dependents.</p>
+                        <p>If you are unmarried.</p>
                         
                         <h3>Head of Household</h3> 
-                        <p>if you are unmarried, have qualified dependents, 
-                        and pay for at least 50% of the household bills.</p>
+                        <p>If you are unmarried, have qualified dependents, 
+                        and paid for over 50% of the household bills.</p>
                         
                         <h3>Married Filing Separately</h3>
-                        <p>if you are married and you and your spouse are 
+                        <p>If you are married and you and your spouse are 
                         filing separate, individual tax returns. Spouses 
                         cannot be claimed with this status.</p>
                         
                         <h3>Married Filing Jointly</h3> 
-                        <p>if you are married and you are filing a joint 
+                        <p>If you are married and you are filing a joint 
                         return with your spouse. Spouses are generally claimed 
                         with this status.</p>
                         
                         <h3>Qualified Widow(er)</h3> 
-                        <p>if your spouse passed away during the tax year. 
+                        <p>If your spouse passed away during the tax year. 
                         This status allows for a higher standard deduction.</p>
                     </div>          
                     
@@ -71,7 +71,7 @@
                     <i class="fa fa-info-circle fa-lg infoButton" id="exemptionsInfoButton" aria-hidden="true" title="More Info"></i>
       
                     <div class="infoBox" id="exemptionsInfoBox">
-                        <p> Each exemption and dependent is $4050 off of your pretaxed gross income.</p> 
+                        <p>Each exemption, which includes each claimed dependent, deducts $4050 off of your pretaxed gross income.</p> 
 
                         <p>You can claim yourself only if you are not claimed 
                         on someone else's tax return. If you are single and do 
@@ -104,7 +104,7 @@
 
                     <div class="infoBox" id="adjustInfoBox">
                         <p>Depending upon your filing status, each of the 
-                        follow checkboxes results in a higher adjustment of 
+                        following checkboxes results in a higher adjustment of 
                         your standard deduction. The adjustment differs 
                         according to your status.</p>
                     </div>
@@ -132,13 +132,14 @@
 
                     <div class="infoBox" id="incomeInfoBox">
                         <p>Your total employment income is typically found on 
-                        your W2 Form under Box #1.</p>
+                        your W2 Form in Box #1.</p>
 
-                        <p>Include all additional income, including gambling 
-                        winnings, interest dividends, 1099 Forms, etc.</p>
+                        <p>If you have additional income not included on your W2, such as earnings from gambling, interest 
+                        dividends, 1099 Forms and other means, put the total 
+                        amount in the Additional Income Box.</p>
 
-                        <p>Your federal income tax withheld is typically found 
-                        on your W2 Form under Box #2.</p>
+                        <p>Your Federal Income Tax Withheld amount is 
+                        typically found on your W2 in Box #2.</p>
                     </div>
 				
                     <label for="income"><span class="require-symbol" title="
@@ -235,10 +236,12 @@
                     acquire the services of a certified tax accountant to 
                     assist with your tax preparation. This tax estimator 
                     provides a simple estimate with an easy-to-use interface. 
-                    It does not take into consideration more complex tax 
-                    situations, such as Alternative Minimum Tax (AMT), 
-                    Self-Employment Tax, Health Insurace Penalty, or even an 
-                    option for itemized deductions. It is merely a way for 
+                    This estimator does not take into consideration more 
+                    complex tax situations, such as Alternative Minimum Tax 
+                    (AMT), Self-Employment Tax, Health Insurace Penalty, or 
+                    even an option for itemized deductions. It is assumed that 
+                    all required Social Security, Medicare and Medicaid taxes 
+                    are fully paid. This estimator merely provides a way for 
                     those who regularly take the standard deduction on their 
                     taxes to assess their tax situation.</p>
                 
