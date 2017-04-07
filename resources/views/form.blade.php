@@ -26,8 +26,7 @@
                     placeholder='Name' value="{{ old('name') }}" required />
                 </div>  	
                 
-                <fieldset id="filing_status">
-                    
+                <fieldset>            
                     <legend>Filing Status</legend>
                     <i class="fa fa-info-circle fa-lg infoButton" 
                     aria-hidden="true" id='statusInfoButton' title="More Info">
@@ -101,7 +100,7 @@
 
                 </fieldset>
 
-                <fieldset id="deductAdjust">
+                <fieldset>
                     <legend>Deduction Adjustments</legend>
                     <i class="fa fa-info-circle fa-lg infoButton" id="adjustInfoButton" aria-hidden="true" title="More Info"></i>
 
@@ -247,14 +246,10 @@
                     Self-Employment Tax, Health Insurace Penalty, or even an 
                     option for itemized deductions. It is merely a way for 
                     those who regularly take the standard deduction on their 
-                    taxes to assess their tax situation. Furthermore, there 
-                    are several assumptions, such as maintaining qualified 
-                    health insurance, fully paying your Social Security, 
-                    Medicare and Medicaid taxes, and having no outstanding tax 
-                    balances or surpluses from previous tax years.</p>
+                    taxes to assess their tax situation.</p>
                 
                     <label class='text-center'>
-                        <input type="checkbox" id="terms" class="checkbox" name="terms"/> <span class="require-symbol" title="Required">*</span><strong>I agree to the terms of use.</strong>
+                        <input type="checkbox" id="terms" class="checkbox" name="terms" required/> <span class="require-symbol" title="Required">*</span><strong>I agree to the terms of use.</strong>
                     </label>
 
                 </div>    

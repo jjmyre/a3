@@ -216,7 +216,8 @@ class TaxEstimateController extends Controller
                     break;
                 }          
             }
-        } elseif ($status == 'head') {
+        } 
+        elseif ($status == 'head') {
             for($i=0; $i<=6; $i++) {  
                 if (($taxableIncome < $headMax[$i]) && ($taxableIncome >= $headMin[$i])) {
                     $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $headMin[$i]) + $headPrevTax[$i];
@@ -224,7 +225,8 @@ class TaxEstimateController extends Controller
                     break;
                 }          
             }
-        } elseif ($status == 'married1') {
+        } 
+        elseif ($status == 'married1') {
             for($i=0; $i<=6; $i++) {  
                 if (($taxableIncome < $married1Max[$i]) && ($taxableIncome >= $married1Min[$i])) {
                     $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $married1Min[$i]) + $married1PrevTax[$i];
@@ -232,7 +234,8 @@ class TaxEstimateController extends Controller
                     break;
                 }          
             }
-        } elseif ($status == 'married2' xor $status == 'widow') {
+        } 
+        elseif ($status == 'married2' xor $status == 'widow') {
             for($i=0; $i<=6; $i++) {  
                 if (($taxableIncome < $married2Max[$i]) && ($taxableIncome >= $married2Min[$i])) {
                     $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $married2Min[$i]) + $married2PrevTax[$i];
@@ -252,13 +255,15 @@ class TaxEstimateController extends Controller
 
         if ($childCredit == 'yes') {
             $childCreditAmount = intval($request->input('childCreditAmount', '0'));
-        } elseif (($childCredit == 'no') xor empty($childCredit)) {
+        } 
+        elseif (($childCredit == 'no') xor empty($childCredit)) {
             $childCreditAmount = 0;
         }
 
         if ($otherCredit == 'yes') {
 	       $otherCreditAmount = intval($request->get('otherCreditAmount', '0'));;
-        } elseif (($otherCredit == 'no') xor empty($otherCredit)) {
+        } 
+        elseif (($otherCredit == 'no') xor empty($otherCredit)) {
 	       $otherCreditAmount = 0;
         }
 
@@ -550,7 +555,8 @@ class TaxEstimateController extends Controller
                     break;
                 }          
             }
-        } elseif ($status == 'head') {
+        } 
+        elseif ($status == 'head') {
             for($i=0; $i<=6; $i++) {  
                 if (($taxableIncome < $headMax[$i]) && ($taxableIncome >= $headMin[$i])) {
                     $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $headMin[$i]) + $headPrevTax[$i];
@@ -558,7 +564,8 @@ class TaxEstimateController extends Controller
                     break;
                 }          
             }
-        } elseif ($status == 'married1') {
+        } 
+        elseif ($status == 'married1') {
             for($i=0; $i<=6; $i++) {  
                 if (($taxableIncome < $married1Max[$i]) && ($taxableIncome >= $married1Min[$i])) {
                     $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $married1Min[$i]) + $married1PrevTax[$i];
@@ -566,7 +573,8 @@ class TaxEstimateController extends Controller
                     break;
                 }          
             }
-        } elseif ($status == 'married2' xor $status == 'widow') {
+        } 
+        elseif ($status == 'married2' xor $status == 'widow') {
             for($i=0; $i<=6; $i++) {  
                 if (($taxableIncome < $married2Max[$i]) && ($taxableIncome >= $married2Min[$i])) {
                     $preCreditTax = $taxBrackets[$i] * ($taxableIncome - $married2Min[$i]) + $married2PrevTax[$i];
@@ -586,13 +594,15 @@ class TaxEstimateController extends Controller
 
         if ($childCredit == 'yes') {
             $childCreditAmount = intval($request->input('childCreditAmount', '0'));
-        } elseif (($childCredit == 'no') xor empty($childCredit)) {
+        } 
+        elseif (($childCredit == 'no') xor empty($childCredit)) {
             $childCreditAmount = 0;
         }
 
         if ($otherCredit == 'yes') {
            $otherCreditAmount = intval($request->get('otherCreditAmount', '0'));;
-        } elseif (($otherCredit == 'no') xor empty($otherCredit)) {
+        } 
+        elseif (($otherCredit == 'no') xor empty($otherCredit)) {
            $otherCreditAmount = 0;
         }
 
